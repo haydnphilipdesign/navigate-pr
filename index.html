@@ -190,7 +190,7 @@
     }
     .section-inside .section-header h2 { color: var(--white); }
     .guide-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
       gap: 20px; max-width: 960px; margin: 0 auto;
     }
     .guide-item {
@@ -309,33 +309,143 @@
     .toast-content svg { flex-shrink: 0; color: var(--teal-light); }
 
     /* ---- Responsive ---- */
+
+    /* Tablet landscape / small desktop */
+    @media (max-width: 1024px) {
+      .hero-left { padding: 80px 36px; }
+      .hero-right { padding: 80px 36px; clip-path: polygon(5% 0, 100% 0, 100% 100%, 0% 100%); }
+      .hero h1 { font-size: 42px; }
+      .hero-content { max-width: 400px; }
+      .hero-right img { width: 240px; }
+      .benefit-card { flex: 0 1 calc((100% - 24px) / 2); }
+    }
+
+    /* Tablet portrait */
     @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 120px 32px 48px; text-align: center; }
-      .hero-right { clip-path: none; padding: 48px 32px; }
-      .hero-right img { width: 200px; }
+      .hero-left { padding: 100px 32px 48px; text-align: center; }
+      .hero-right { clip-path: none; padding: 40px 32px; }
+      .hero-right img { width: 180px; }
       .hero h1 { font-size: 36px; }
-      .hero-form .form-row { flex-direction: column; align-items: stretch; }
+      .hero-subtitle { font-size: 17px; }
+      .hero-description { font-size: 15px; margin-bottom: 28px; }
+      .hero-content { max-width: 520px; margin: 0 auto; }
+      .hero-form .form-row {
+        flex-direction: column; align-items: stretch;
+        max-width: 400px; margin: 0 auto;
+      }
+
       .section-what,
       .section-inside,
       .section-how { clip-path: none; padding: 80px 0; }
+
+      .section-header h2 { font-size: 32px; }
+      .section-lead { font-size: 16px; }
+
+      .benefit-card { flex: 0 1 calc((100% - 24px) / 2); min-width: 0; }
+
+      .guide-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+      .midcta-content { padding: 48px 32px; }
+      .midcta-content h2 { font-size: 28px; }
+      .midcta-form .form-row {
+        flex-direction: column; align-items: stretch;
+        max-width: 400px; margin: 0 auto;
+      }
+      .final-form .form-row {
+        flex-direction: column; align-items: stretch;
+        max-width: 400px; margin: 0 auto;
+      }
+
       .steps { flex-direction: column; align-items: center; gap: 32px; }
       .step-line { display: none !important; }
-      .step { padding: 0; }
+      .step { padding: 0; max-width: 340px; }
+
+      .exists-content h2 { font-size: 26px; }
+
+      .final-cta-content h2 { font-size: 32px; }
+
       .footer-content { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; }
+      .footer-links { justify-content: center; flex-wrap: wrap; }
       .site-footer { clip-path: none; padding-top: 48px; }
     }
+
+    /* Mobile */
     @media (max-width: 640px) {
-      .section { padding: 64px 0; }
-      .section-header h2 { font-size: 28px; }
-      .hero-left { padding: 100px 20px 40px; }
+      .container { padding: 0 16px; }
+
+      /* Header */
+      .site-header .container { height: 60px; }
+      .header-logo img { height: 30px; }
+      .header-cta { padding: 8px 20px; font-size: 13px; }
+
+      /* Hero */
+      .hero-left { padding: 80px 16px 32px; }
+      .hero-right { padding: 28px 16px; }
+      .hero-right img { width: 140px; }
       .hero h1 { font-size: 30px; }
+      .hero-subtitle { font-size: 16px; margin-bottom: 14px; }
+      .hero-description { font-size: 14px; margin-bottom: 24px; }
+      .hero-form .form-row { max-width: none; }
+
+      /* Sections */
+      .section { padding: 64px 0; }
+      .section-header { margin-bottom: 36px; }
+      .section-header h2 { font-size: 26px; }
+      .section-lead { font-size: 15px; }
+
+      /* Benefits */
       .benefit-card { flex: 0 0 100%; }
-      .guide-grid { grid-template-columns: 1fr; }
-      .midcta-content { padding: 40px 24px; border-radius: 12px; }
-      .midcta-form .form-row { flex-direction: column; align-items: stretch; }
-      .final-form .form-row { flex-direction: column; align-items: stretch; }
+      .benefits-grid { gap: 16px; }
+
+      /* Guide grid */
+      .guide-grid { grid-template-columns: 1fr; gap: 16px; }
+      .guide-item { padding: 22px; }
+
+      /* Mid CTA */
+      .midcta-content { padding: 36px 20px; border-radius: 12px; }
+      .midcta-content h2 { font-size: 24px; }
+      .midcta-content > p { font-size: 15px; margin-bottom: 28px; }
+
+      /* How it works */
+      .section-how { padding-top: 80px; }
+      .step h3 { font-size: 16px; }
+
+      /* Why it exists */
+      .exists-content h2 { font-size: 24px; }
+      .exists-content p { font-size: 15px; }
+      .exists-icon img { width: 56px; }
+
+      /* Final CTA */
+      .final-cta-content h2 { font-size: 28px; }
+      .final-cta-content > p { font-size: 15px; margin-bottom: 32px; }
+
+      /* Forms — 16px prevents iOS auto-zoom on focus */
+      .waitlist-form input[type="email"],
+      .waitlist-form input[type="text"] {
+        font-size: 16px; padding: 14px 16px; min-height: 48px;
+      }
+      .btn { padding: 14px 28px; font-size: 15px; min-height: 48px; }
+
+      /* Footer */
+      .footer-links { gap: 20px; }
+      .footer-brand img { height: 26px; }
+    }
+
+    /* Small mobile */
+    @media (max-width: 380px) {
+      .container { padding: 0 12px; }
+      .hero-left { padding: 72px 12px 28px; }
+      .hero h1 { font-size: 26px; }
+      .hero-subtitle { font-size: 15px; }
+      .section-header h2 { font-size: 23px; }
+      .midcta-content h2 { font-size: 22px; }
+      .midcta-content { padding: 28px 16px; }
+      .final-cta-content h2 { font-size: 24px; }
+      .header-logo img { height: 26px; }
+      .header-cta { padding: 7px 16px; font-size: 12px; }
     }
   </style>
 </head>
