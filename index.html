@@ -8,8 +8,336 @@
   <link rel="icon" type="image/png" href="images/Icon Only Logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ======================================
+       Variation 4 — Diagonal Modern
+       Angled section dividers, split-screen hero,
+       dynamic geometry, bold color blocks
+       ====================================== */
+
+    :root {
+      --blue: #0B3C5D;
+      --blue-dark: #082d47;
+      --blue-light: #0e4d76;
+      --teal: #1BA6A6;
+      --teal-dark: #158a8a;
+      --teal-light: #22c4c4;
+      --gold: #E6C07B;
+      --gold-light: #f0d49e;
+      --white: #FFFFFF;
+      --off-white: #F7F9FB;
+      --gray-100: #EFF2F5;
+      --gray-200: #D8DFE6;
+      --gray-300: #B0BEC5;
+      --gray-500: #607D8B;
+      --gray-700: #37474F;
+      --font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --max-width: 1140px;
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-700);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--teal); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--teal-dark); }
+    h1, h2, h3 { color: var(--blue); font-weight: 700; line-height: 1.2; }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---- Header ---- */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+    }
+    .site-header .container {
+      display: flex; align-items: center; justify-content: space-between; height: 72px;
+    }
+    .header-logo img { height: 38px; width: auto; }
+    .header-cta {
+      display: inline-flex; align-items: center;
+      padding: 10px 28px; background: var(--teal); color: var(--white);
+      font-size: 14px; font-weight: 600;
+      border-radius: 100px; transition: all var(--transition);
+    }
+    .header-cta:hover { background: var(--teal-dark); color: var(--white); transform: translateY(-1px); }
+
+    /* ---- Hero (Split Screen) ---- */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+    .hero-left {
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 48px;
+      background: var(--white);
+    }
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      padding: 80px 48px;
+      background: var(--blue);
+      position: relative;
+      clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-content { max-width: 460px; }
+    .hero h1 { font-size: 48px; font-weight: 900; margin-bottom: 12px; letter-spacing: -1px; }
+    .hero-subtitle { font-size: 19px; font-weight: 500; color: var(--teal); margin-bottom: 20px; }
+    .hero-description { font-size: 16px; color: var(--gray-500); margin-bottom: 36px; line-height: 1.7; }
+    .hero-right-inner { text-align: center; }
+    .hero-right img { width: 280px; margin: 0 auto; }
+
+    /* ---- Forms ---- */
+    .waitlist-form .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .waitlist-form input[type="email"],
+    .waitlist-form input[type="text"] {
+      flex: 1; min-width: 180px;
+      padding: 14px 18px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 100px;
+      font-family: var(--font); font-size: 15px;
+      color: var(--gray-700); background: var(--white); outline: none;
+      transition: all var(--transition);
+    }
+    .waitlist-form input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(27,166,166,0.1); }
+    .waitlist-form input::placeholder { color: var(--gray-300); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 32px; font-family: var(--font);
+      font-size: 15px; font-weight: 600;
+      border: none; border-radius: 100px;
+      cursor: pointer; transition: all var(--transition); white-space: nowrap;
+    }
+    .btn-primary { background: var(--teal); color: var(--white); }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+    .form-note { margin-top: 14px; font-size: 13px; color: var(--gray-300); }
+
+    /* ---- Angled Sections ---- */
+    .section { padding: 100px 0; position: relative; }
+    .section-header { text-align: center; max-width: 660px; margin: 0 auto 56px; }
+    .section-header h2 { font-size: 36px; margin-bottom: 16px; }
+    .section-lead { font-size: 17px; color: var(--gray-500); line-height: 1.8; }
+
+    /* Diagonal divider */
+    .angled-top { position: relative; }
+    .angled-top::before {
+      content: ''; position: absolute; top: -60px; left: 0; right: 0;
+      height: 60px; z-index: 1;
+    }
+
+    /* ---- What This Guide Does ---- */
+    .section-what {
+      background: var(--off-white);
+      clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%);
+      padding: 140px 0;
+    }
+    .section-what .section-header { max-width: 720px; }
+
+    /* ---- Benefits ---- */
+    .section-why { background: var(--white); }
+    .benefits-grid {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 24px; max-width: 1000px; margin: 0 auto;
+    }
+    .benefit-card {
+      position: relative;
+      flex: 0 1 calc((100% - 48px) / 3);
+      min-width: 220px;
+      padding: 32px 24px 32px 28px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--gray-100);
+      transition: all var(--transition);
+      overflow: hidden;
+    }
+    .benefit-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 4px; height: 100%; background: var(--teal);
+      transform: scaleY(0); transition: transform var(--transition);
+      transform-origin: bottom;
+    }
+    .benefit-card:hover { border-color: var(--teal); box-shadow: 0 4px 20px rgba(27,166,166,0.08); }
+    .benefit-card:hover::before { transform: scaleY(1); }
+    .benefit-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(27,166,166,0.08); color: var(--teal); margin-bottom: 16px;
+    }
+    .benefit-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .benefit-card p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+
+    /* ---- What's Inside ---- */
+    .section-inside {
+      background: var(--blue);
+      clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 calc(100% - 40px));
+      padding: 140px 0;
+    }
+    .section-inside .section-header h2 { color: var(--white); }
+    .guide-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px; max-width: 960px; margin: 0 auto;
+    }
+    .guide-item {
+      padding: 28px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      transition: all var(--transition);
+    }
+    .guide-item:hover { background: rgba(255,255,255,0.1); border-color: var(--teal); }
+    .guide-number {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      color: var(--gold); margin-bottom: 12px; letter-spacing: 1px;
+    }
+    .guide-item h3 { font-size: 17px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+    .guide-item p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ---- Mid CTA ---- */
+    .section-midcta {
+      background: var(--white);
+      padding: 80px 0;
+    }
+    .midcta-content {
+      background: var(--blue);
+      border-radius: 20px;
+      padding: 64px 48px;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .midcta-content h2 { color: var(--white); font-size: 32px; margin-bottom: 16px; }
+    .midcta-content > p { color: rgba(255,255,255,0.75); font-size: 17px; margin-bottom: 36px; }
+    .midcta-form input[type="email"],
+    .midcta-form input[type="text"] {
+      background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); color: var(--white);
+    }
+    .midcta-form input::placeholder { color: rgba(255,255,255,0.4); }
+    .midcta-form input:focus { border-color: var(--gold); background: rgba(255,255,255,0.15); box-shadow: none; }
+    .midcta-form .btn-primary { background: var(--gold); color: var(--blue); }
+    .midcta-form .btn-primary:hover { background: var(--gold-light); }
+    .midcta-form .form-row { justify-content: center; }
+
+    /* ---- How It Works ---- */
+    .section-how {
+      background: var(--off-white);
+      clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+      padding: 140px 0 100px;
+    }
+    .steps {
+      display: flex; justify-content: center; gap: 0; max-width: 900px; margin: 0 auto;
+    }
+    .step { text-align: center; flex: 1; padding: 0 28px; position: relative; }
+    .step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--teal); color: var(--white);
+      font-size: 22px; font-weight: 700; margin-bottom: 20px;
+      position: relative; z-index: 2;
+    }
+    .step h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--gray-500); line-height: 1.6; }
+    .step-line {
+      position: absolute; top: 28px; left: calc(50% + 36px); right: calc(-50% + 36px);
+      height: 2px; background: var(--gray-200); z-index: 1;
+    }
+    .step:last-child .step-line { display: none; }
+
+    /* ---- Why It Exists ---- */
+    .section-exists { background: var(--off-white); padding: 0 0 100px; }
+    .exists-content { text-align: center; max-width: 640px; margin: 0 auto; }
+    .exists-icon { margin-bottom: 24px; }
+    .exists-icon img { width: 72px; margin: 0 auto; opacity: 0.8; }
+    .exists-content h2 { font-size: 30px; margin-bottom: 16px; }
+    .exists-content p { font-size: 16px; color: var(--gray-500); line-height: 1.8; }
+
+    /* ---- Final CTA ---- */
+    .section-final-cta {
+      background: var(--white); padding: 100px 0;
+      border-top: 1px solid var(--gray-100);
+    }
+    .final-cta-content { text-align: center; max-width: 580px; margin: 0 auto; }
+    .final-cta-content h2 { font-size: 36px; margin-bottom: 16px; }
+    .final-cta-content > p { font-size: 17px; color: var(--gray-500); margin-bottom: 40px; }
+    .final-form .form-row { justify-content: center; }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      background: var(--blue-dark); padding: 48px 0;
+      clip-path: polygon(0 20px, 100% 0, 100% 100%, 0 100%);
+      padding-top: 68px;
+    }
+    .footer-content {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;
+    }
+    .footer-brand img { height: 30px; width: auto; margin-bottom: 6px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.5); }
+    .footer-links a:hover { color: var(--teal-light); }
+    .footer-copy p { font-size: 13px; color: rgba(255,255,255,0.25); }
+
+    /* ---- Toast ---- */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      z-index: 200; opacity: 0; pointer-events: none;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+    .toast-content {
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 28px; background: var(--blue); color: var(--white);
+      border-radius: 100px; font-size: 15px; font-weight: 500;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    .toast-content svg { flex-shrink: 0; color: var(--teal-light); }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 120px 32px 48px; text-align: center; }
+      .hero-right { clip-path: none; padding: 48px 32px; }
+      .hero-right img { width: 200px; }
+      .hero h1 { font-size: 36px; }
+      .hero-form .form-row { flex-direction: column; align-items: stretch; }
+      .section-what,
+      .section-inside,
+      .section-how { clip-path: none; padding: 80px 0; }
+      .steps { flex-direction: column; align-items: center; gap: 32px; }
+      .step-line { display: none !important; }
+      .step { padding: 0; }
+      .footer-content { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      .site-footer { clip-path: none; padding-top: 48px; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 64px 0; }
+      .section-header h2 { font-size: 28px; }
+      .hero-left { padding: 100px 20px 40px; }
+      .hero h1 { font-size: 30px; }
+      .benefit-card { flex: 0 0 100%; }
+      .guide-grid { grid-template-columns: 1fr; }
+      .midcta-content { padding: 40px 24px; border-radius: 12px; }
+      .midcta-form .form-row { flex-direction: column; align-items: stretch; }
+      .final-form .form-row { flex-direction: column; align-items: stretch; }
+    }
+  </style>
 </head>
 <body>
 
@@ -23,11 +351,11 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero (Split Screen) -->
   <section class="hero" id="hero">
-    <div class="container">
+    <div class="hero-left">
       <div class="hero-content fade-in">
-        <h1>Navigate Puerto Rico</h1>
+        <h1>Navigate<br>Puerto Rico</h1>
         <p class="hero-subtitle">Your Complete Guide to Relocating from the U.S. to Puerto Rico</p>
         <p class="hero-description">Everything you need to know — from neighborhoods to taxes — so you can move with clarity and confidence.</p>
         <form class="waitlist-form hero-form" data-form="hero">
@@ -38,8 +366,10 @@
           <p class="form-note">Be the first to know when the guide launches. No spam, ever.</p>
         </form>
       </div>
-      <div class="hero-image fade-in">
-        <img src="images/Primary Logo.png" alt="Navigate Puerto Rico Logo" width="360">
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-inner fade-in">
+        <img src="images/Primary Logo Inverted.png" alt="Navigate Puerto Rico Logo">
       </div>
     </div>
   </section>
@@ -63,35 +393,35 @@
       <div class="benefits-grid fade-in">
         <div class="benefit-card">
           <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
           <h3>Avoid Costly Mistakes</h3>
           <p>Sidestep the common pitfalls that catch unprepared relocators off guard.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
           </div>
           <h3>Understand Taxes &amp; Costs</h3>
           <p>Get clear on cost of living and tax considerations before you commit.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </div>
           <h3>Choose the Right Area</h3>
           <p>Find the neighborhood that matches your lifestyle, budget, and needs.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <h3>Know What to Expect</h3>
           <p>Understand day-to-day life so nothing catches you by surprise.</p>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
           <h3>Move with Confidence</h3>
           <p>Replace guesswork with a clear, organized plan you can trust.</p>
@@ -100,7 +430,7 @@
     </div>
   </section>
 
-  <!-- What's Inside the Guide -->
+  <!-- What's Inside -->
   <section class="section section-inside" id="inside">
     <div class="container">
       <div class="section-header fade-in">
@@ -141,7 +471,7 @@
     </div>
   </section>
 
-  <!-- Mid-Page CTA -->
+  <!-- Mid CTA -->
   <section class="section section-midcta">
     <div class="container">
       <div class="midcta-content fade-in">
@@ -167,18 +497,19 @@
       <div class="steps fade-in">
         <div class="step">
           <div class="step-number">1</div>
+          <div class="step-line"></div>
           <h3>Join the Waitlist</h3>
           <p>Enter your email to reserve your spot and get notified first.</p>
         </div>
-        <div class="step-divider"></div>
         <div class="step">
           <div class="step-number">2</div>
+          <div class="step-line"></div>
           <h3>Get the Guide</h3>
           <p>Receive the complete relocation guide as soon as it launches.</p>
         </div>
-        <div class="step-divider"></div>
         <div class="step">
           <div class="step-number">3</div>
+          <div class="step-line"></div>
           <h3>Plan Your Move</h3>
           <p>Use the guide to plan and execute your relocation with confidence.</p>
         </div>
@@ -186,12 +517,12 @@
     </div>
   </section>
 
-  <!-- Why This Guide Exists -->
+  <!-- Why It Exists -->
   <section class="section section-exists">
     <div class="container">
       <div class="exists-content fade-in">
         <div class="exists-icon">
-          <img src="images/Icon Only Logo.png" alt="" width="80">
+          <img src="images/Icon Only Logo.png" alt="">
         </div>
         <h2>Why Navigate Puerto Rico Exists</h2>
         <p>Relocating to Puerto Rico can feel overwhelming without clear guidance. This guide was created to simplify the process, bring clarity to the decisions you need to make, and help you move forward with confidence.</p>
@@ -222,7 +553,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <img src="images/Horizontal Logo Inverted.png" alt="Navigate Puerto Rico" width="180">
+          <img src="images/Horizontal Logo Inverted.png" alt="Navigate Puerto Rico">
           <p>Relocation Guide</p>
         </div>
         <div class="footer-links">
@@ -237,7 +568,7 @@
     </div>
   </footer>
 
-  <!-- Success Toast -->
+  <!-- Toast -->
   <div class="toast" id="toast" aria-live="polite">
     <div class="toast-content">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -245,6 +576,53 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      const fadeEls = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15 });
+      fadeEls.forEach((el) => observer.observe(el));
+
+      const header = document.querySelector('.site-header');
+      const forms = document.querySelectorAll('.waitlist-form');
+      const toast = document.getElementById('toast');
+      let toastTimer;
+      function showToast() {
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 4000);
+      }
+      forms.forEach((form) => {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const emailInput = form.querySelector('input[type="email"]');
+          const email = emailInput.value.trim();
+          if (!email) return;
+          const waitlist = JSON.parse(localStorage.getItem('npr_waitlist') || '[]');
+          const nameInput = form.querySelector('input[type="text"]');
+          const name = nameInput ? nameInput.value.trim() : '';
+          waitlist.push({ email, name, source: form.dataset.form, date: new Date().toISOString() });
+          localStorage.setItem('npr_waitlist', JSON.stringify(waitlist));
+          form.reset();
+          showToast();
+        });
+      });
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', function (e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const offset = header.offsetHeight + 16;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
