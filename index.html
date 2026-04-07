@@ -9,6 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2244375');
+  </script>
+  <!-- End MailerLite Universal -->
   <style>
     /* ======================================
        Variation 4 — Diagonal Modern
@@ -734,13 +743,31 @@
           const emailInput = form.querySelector('input[type="email"]');
           const email = emailInput.value.trim();
           if (!email) return;
-          const waitlist = JSON.parse(localStorage.getItem('npr_waitlist') || '[]');
           const nameInput = form.querySelector('input[type="text"]');
           const name = nameInput ? nameInput.value.trim() : '';
-          waitlist.push({ email, name, source: form.dataset.form, date: new Date().toISOString() });
-          localStorage.setItem('npr_waitlist', JSON.stringify(waitlist));
-          form.reset();
-          showToast();
+          const btn = form.querySelector('button[type="submit"]');
+          const btnText = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Submitting...';
+          const formData = new FormData();
+          formData.append('fields[email]', email);
+          if (name) formData.append('fields[name]', name);
+          formData.append('ml-submit', '1');
+          formData.append('anticsrf', 'true');
+          fetch('https://assets.mailerlite.com/jsonp/2244375/forms/184125810009966297/subscribe', {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+          }).then(() => {
+            form.reset();
+            showToast();
+          }).catch(() => {
+            form.reset();
+            showToast();
+          }).finally(() => {
+            btn.disabled = false;
+            btn.textContent = btnText;
+          });
         });
       });
       document.querySelectorAll('a[href^="#"]').forEach((link) => {
