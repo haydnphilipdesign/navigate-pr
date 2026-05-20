@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Navigate Puerto Rico — The Relocation Guide</title>
-  <meta name="description" content="Everything you need to know about relocating from the U.S. to Puerto Rico — neighborhoods, taxes, cost of living, and more. Join the waitlist.">
+  <meta name="description" content="Download the free guide to the Top 10 Mistakes people make moving to Puerto Rico — and join the waitlist for the complete Navigate Puerto Rico Relocation Guide.">
   <link rel="canonical" href="https://www.navigatepuertorico.com/">
   <link rel="icon" type="image/webp" href="images/Icon Only Logo.webp">
   <meta property="og:type" content="website">
@@ -12,13 +12,13 @@
   <meta property="og:site_name" content="Navigate Puerto Rico">
   <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Navigate Puerto Rico — The Relocation Guide">
-  <meta property="og:description" content="Everything you need to know about relocating from the U.S. to Puerto Rico — neighborhoods, taxes, cost of living, and more. Join the waitlist.">
+  <meta property="og:description" content="Download the free guide to the Top 10 Mistakes people make moving to Puerto Rico — and join the waitlist for the complete Navigate Puerto Rico Relocation Guide.">
   <meta property="og:image" content="https://www.navigatepuertorico.com/images/navigate-puerto-rico.webp">
   <meta property="og:image:alt" content="Navigate Puerto Rico relocation guide cover">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.navigatepuertorico.com/">
   <meta name="twitter:title" content="Navigate Puerto Rico — The Relocation Guide">
-  <meta name="twitter:description" content="Everything you need to know about relocating from the U.S. to Puerto Rico — neighborhoods, taxes, cost of living, and more. Join the waitlist.">
+  <meta name="twitter:description" content="Download the free guide to the Top 10 Mistakes people make moving to Puerto Rico — and join the waitlist for the complete Navigate Puerto Rico Relocation Guide.">
   <meta name="twitter:image" content="https://www.navigatepuertorico.com/images/navigate-puerto-rico.webp">
   <meta name="twitter:image:alt" content="Navigate Puerto Rico relocation guide cover">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,6 +163,14 @@
     .btn-primary { background: var(--teal); color: var(--white); }
     .btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
     .form-note { margin-top: 14px; font-size: 13px; color: var(--gray-300); }
+
+    /* Form success / PDF download state */
+    .form-success { text-align: center; padding: 4px 0; }
+    .form-success svg { color: var(--teal); margin: 0 auto 10px; }
+    .form-success-title { font-size: 17px; font-weight: 700; color: var(--blue); margin-bottom: 18px; }
+    .form-success .form-note { margin-top: 16px; }
+    .midcta-form .form-success svg { color: var(--gold); }
+    .midcta-form .form-success-title { color: var(--white); }
 
     /* ---- Angled Sections ---- */
     .section { padding: 100px 0; position: relative; }
@@ -361,22 +369,6 @@
     .footer-social a:hover { color: var(--teal-light); }
     .footer-social svg { width: 20px; height: 20px; fill: currentColor; }
 
-    /* ---- Toast ---- */
-    .toast {
-      position: fixed; bottom: 32px; left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      z-index: 200; opacity: 0; pointer-events: none;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
-    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
-    .toast-content {
-      display: flex; align-items: center; gap: 12px;
-      padding: 16px 28px; background: var(--blue); color: var(--white);
-      border-radius: 100px; font-size: 15px; font-weight: 500;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    }
-    .toast-content svg { flex-shrink: 0; color: var(--teal-light); }
-
     /* ---- Responsive ---- */
 
     /* Tablet landscape / small desktop */
@@ -561,7 +553,7 @@
       </a>
       <div class="header-actions">
         <a href="https://docs.google.com/forms/d/1sXzHnMwrQog1GHYpM5b_LgJe0Pl4ISLlsUdi3GJTGaw/viewform?edit_requested=true" class="header-vendor-link" target="_blank" rel="noopener noreferrer">Vendor Application</a>
-        <a href="#waitlist" class="header-cta">Join the Waitlist</a>
+        <a href="#waitlist" class="header-cta">Get the Free Guide</a>
       </div>
     </div>
   </header>
@@ -572,13 +564,14 @@
       <div class="hero-content fade-in">
         <h1>Navigate<br>Puerto Rico</h1>
         <p class="hero-subtitle">Your Complete Guide to Relocating from the U.S. to Puerto Rico</p>
-        <p class="hero-description">Everything you need to know — from neighborhoods to taxes — so you can move with clarity and confidence.</p>
+        <p class="hero-description">Start with our free guide — the 10 most common mistakes people make when moving to Puerto Rico — and join the waitlist for the complete relocation guide.</p>
         <form class="waitlist-form hero-form" data-form="hero">
           <div class="form-row">
+            <input type="text" name="name" placeholder="Your name (optional)" aria-label="Your name">
             <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
-            <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+            <button type="submit" class="btn btn-primary">Get the Free Guide</button>
           </div>
-          <p class="form-note">Be the first to know when the guide launches. No spam, ever.</p>
+          <p class="form-note">Get the free guide instantly — and join the waitlist for the full relocation guide. No spam, ever.</p>
         </form>
       </div>
     </div>
@@ -690,13 +683,13 @@
   <section class="section section-midcta">
     <div class="container">
       <div class="midcta-content fade-in">
-        <h2>Get the Guide Before Everyone Else</h2>
-        <p>Join the waitlist now and be the first to receive the Navigate Puerto Rico Relocation Guide when it launches.</p>
+        <h2>Get the Free “Top 10 Mistakes” Guide</h2>
+        <p>Download the free guide and see the most common — and costly — mistakes people make moving to Puerto Rico. You'll also join the waitlist for the full relocation guide.</p>
         <form class="waitlist-form midcta-form" data-form="mid">
           <div class="form-row">
             <input type="text" name="name" placeholder="Your name (optional)" aria-label="Your name">
             <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
-            <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+            <button type="submit" class="btn btn-primary">Get the Free Guide</button>
           </div>
         </form>
       </div>
@@ -713,20 +706,20 @@
         <div class="step">
           <div class="step-number">1</div>
           <div class="step-line"></div>
-          <h3>Join the Waitlist</h3>
-          <p>Enter your email to reserve your spot and get notified first.</p>
+          <h3>Get the Free Guide</h3>
+          <p>Enter your name and email to instantly download the Top 10 Mistakes guide.</p>
         </div>
         <div class="step">
           <div class="step-number">2</div>
           <div class="step-line"></div>
-          <h3>Get the Guide</h3>
-          <p>Receive the complete relocation guide as soon as it launches.</p>
+          <h3>Join the Waitlist</h3>
+          <p>You're automatically added to the waitlist for the full Navigate Puerto Rico Relocation Guide.</p>
         </div>
         <div class="step">
           <div class="step-number">3</div>
           <div class="step-line"></div>
           <h3>Plan Your Move</h3>
-          <p>Use the guide to plan and execute your relocation with confidence.</p>
+          <p>Use both guides to plan and execute your relocation with confidence.</p>
         </div>
       </div>
     </div>
@@ -749,13 +742,13 @@
   <section class="section section-final-cta" id="waitlist">
     <div class="container">
       <div class="final-cta-content fade-in">
-        <h2>Be the First to Get the Guide</h2>
-        <p>Join the waitlist and be notified as soon as the Navigate Puerto Rico guide is available.</p>
+        <h2>Get Your Free Relocation Guide</h2>
+        <p>Download the free Top 10 Mistakes guide and join the waitlist for the complete Navigate Puerto Rico Relocation Guide.</p>
         <form class="waitlist-form final-form" data-form="footer">
           <div class="form-row">
             <input type="text" name="name" placeholder="Your name (optional)" aria-label="Your name">
             <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
-            <button type="submit" class="btn btn-primary">Join the Waitlist</button>
+            <button type="submit" class="btn btn-primary">Get the Free Guide</button>
           </div>
           <p class="form-note">No spam. Unsubscribe anytime.</p>
         </form>
@@ -786,7 +779,7 @@
         <div class="footer-links">
           <a href="#about">About the Guide</a>
           <a href="#inside">What's Inside</a>
-          <a href="#waitlist">Join the Waitlist</a>
+          <a href="#waitlist">Get the Free Guide</a>
           <a href="https://docs.google.com/forms/d/1sXzHnMwrQog1GHYpM5b_LgJe0Pl4ISLlsUdi3GJTGaw/viewform?edit_requested=true" target="_blank" rel="noopener noreferrer">Vendor Application</a>
         </div>
         <div class="footer-social">
@@ -804,14 +797,6 @@
     </div>
   </footer>
 
-  <!-- Toast -->
-  <div class="toast" id="toast" aria-live="polite">
-    <div class="toast-content">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-      <span>You're on the list! We'll notify you when the guide launches.</span>
-    </div>
-  </div>
-
   <script>
     (function () {
       'use strict';
@@ -825,13 +810,20 @@
 
       const header = document.querySelector('.site-header');
       const forms = document.querySelectorAll('.waitlist-form');
-      const toast = document.getElementById('toast');
-      let toastTimer;
-      function showToast() {
-        toast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 4000);
+      const PDF_URL = 'files/Navigate_PR_Top10Mistakes.pdf';
+
+      function showSuccess(form) {
+        const success = document.createElement('div');
+        success.className = 'form-success';
+        success.setAttribute('role', 'status');
+        success.innerHTML =
+          '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+          '<p class="form-success-title">You’re in! Your free guide is ready.</p>' +
+          '<a class="btn btn-primary" href="' + PDF_URL + '" download="Navigate-PR-Top-10-Mistakes.pdf" target="_blank" rel="noopener">Download the PDF</a>' +
+          '<p class="form-note">You’ve also joined the waitlist for the full Navigate Puerto Rico Relocation Guide.</p>';
+        form.replaceChildren(success);
       }
+
       forms.forEach((form) => {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
@@ -841,7 +833,6 @@
           const nameInput = form.querySelector('input[type="text"]');
           const name = nameInput ? nameInput.value.trim() : '';
           const btn = form.querySelector('button[type="submit"]');
-          const btnText = btn.textContent;
           btn.disabled = true;
           btn.textContent = 'Submitting...';
           const formData = new FormData();
@@ -854,14 +845,9 @@
             body: formData,
             mode: 'no-cors'
           }).then(() => {
-            form.reset();
-            showToast();
+            showSuccess(form);
           }).catch(() => {
-            form.reset();
-            showToast();
-          }).finally(() => {
-            btn.disabled = false;
-            btn.textContent = btnText;
+            showSuccess(form);
           });
         });
       });
